@@ -4,13 +4,6 @@ import Form from './components/Form/Form'
 import List from './components/List/List'
 import Footer from './components/Footer/Footer'
 
-const data = [
-  { id: 1, check: false, text: 'Lorem ipsum dolor sit amet ... 1' },
-  { id: 2, check: false, text: 'Lorem ipsum dolor sit amet ... 2' },
-  { id: 3, check: true, text: 'Lorem ipsum dolor sit amet ... 3' },
-  { id: 4, check: false, text: 'Lorem ipsum dolor sit amet ... 4' },
-]
-
 function App() {
   const [list, setList] = useState([])
   const [listForm, setListForm] = useState(true)
@@ -64,11 +57,11 @@ function App() {
 
   return (
     <>
-      <header className="uk-container uk-container-xsmall uk-flex uk-flex-bottom">
+      <header className="uk-container uk-container-xsmall">
         <Header listForm={listForm} addNewList={handleAddNewList} toggleListForm={toggleListForm} />
       </header>
       <div className="uk-container uk-container-xsmall">
-        <section className="uk-padding">
+        <section className="uk-padding uk-padding-remove-horizontal">
           <Form toggleItemForm={toggleItemForm} itemForm={itemForm} inputValue={handleAddNewItem} />
           <List list={list} toggleCheched={handleToggleCheched} itemDelete={handleItemDelete} editedInputValue={handleEditedInputValue} />
         </section>

@@ -15,13 +15,19 @@ export default function Form({ toggleItemForm, itemForm, inputValue }) {
     (itemForm && (
       <button
         onClick={toggleItemForm}
-        className="uk-button uk-button-icon uk-padding-remove-horizontal uk-text-success"
+        className="uk-button uk-button-icon uk-margin-small-left uk-padding-remove-horizontal uk-text-success"
         type="button"
         data-uk-icon="plus"
-        data-uk-scrollspy="cls:uk-animation-slide-right-small"
+        data-uk-scrollspy="cls:uk-animation-slide-right"
       ></button>
     )) || (
-      <form onSubmit={handleInputValue} className="uk-form uk-margin">
+      <form onSubmit={handleInputValue} className="uk-form uk-width-xlarge uk-flex uk-flex-middle" data-uk-scrollspy="cls: uk-animation-slide-left-small">
+        <button
+          onClick={toggleItemForm}
+          className="uk-button uk-button-icon uk-margin-small-left uk-margin-small-right uk-padding-remove-horizontal uk-padding-remove-vertical uk-text-danger uk-icon"
+          type="button"
+          data-uk-icon="close"
+        ></button>
         <input ref={textInputValueRef} className="uk-input" type="text" placeholder="Add New Task" autoFocus />
       </form>
     )
