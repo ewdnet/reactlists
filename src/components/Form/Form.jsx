@@ -18,6 +18,7 @@ export default function Form({ toggleItemForm, itemForm, inputValue }) {
         className="uk-button uk-button-icon uk-margin-small-left uk-padding-remove-horizontal uk-text-success"
         type="button"
         data-uk-icon="plus"
+        data-uk-tooltip="title: Add new task"
         data-uk-scrollspy="cls:uk-animation-slide-right"
       ></button>
     )) || (
@@ -27,6 +28,7 @@ export default function Form({ toggleItemForm, itemForm, inputValue }) {
           className="uk-button uk-button-icon uk-margin-small-left uk-margin-small-right uk-padding-remove-horizontal uk-padding-remove-vertical uk-text-danger uk-icon"
           type="button"
           data-uk-icon="close"
+          data-uk-tooltip="title: Cencel"
         ></button>
         <input ref={textInputValueRef} className="uk-input" type="text" placeholder="Add New Task" autoFocus />
       </form>

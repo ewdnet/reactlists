@@ -31,6 +31,7 @@ export default function Header({ listForm, toggleListForm, addNewList }) {
             className="uk-button uk-button-icon uk-padding-remove-horizontal uk-text-success uk-icon"
             type="button"
             data-uk-icon="plus"
+            data-uk-tooltip="title: Add new list"
             data-uk-scrollspy="cls:uk-animation-slide-left"
           ></button>
         )) || (
@@ -40,6 +41,7 @@ export default function Header({ listForm, toggleListForm, addNewList }) {
               className="uk-button uk-button-icon uk-padding-small uk-padding-remove-vertical uk-text-danger uk-icon"
               type="button"
               data-uk-icon="close"
+              data-uk-tooltip="title: Cencel"
             ></button>
             <input ref={newListTitleRef} className="uk-input uk-text-small" type="text" placeholder="Add New List" autoFocus />
           </form>

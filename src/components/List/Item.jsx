@@ -3,7 +3,6 @@ import React, { useState, useRef } from 'react'
 export default function Item({ item, toggleCheched, itemDelete, editedInputValue }) {
   const [itemEditable, setItemEditable] = useState(false)
   const textInputValueRef = useRef()
-  const [inputValue, setInputValue] = useState(textInputValueRef)
 
   function handleItemClick() {
     toggleCheched(item.id)
@@ -14,7 +13,7 @@ export default function Item({ item, toggleCheched, itemDelete, editedInputValue
   function handleInputValue(event) {
     event.preventDefault()
     const id = item.id
-    const text = inputValue.current.value
+    const text = textInputValueRef.current.value
     if (text === '') return alert('Task Text is required!')
     setItemEditable(itemEditable => (itemEditable = !itemEditable))
     editedInputValue(id, text)
