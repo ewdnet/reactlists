@@ -1,6 +1,6 @@
 import React, { useRef } from 'react'
 
-export default function Form({ toggleItemForm, itemForm, inputValue }) {
+export default function Form({ taskForm, toggleItemForm, inputValue }) {
   const textInputValueRef = useRef()
 
   function handleInputValue(event) {
@@ -12,7 +12,7 @@ export default function Form({ toggleItemForm, itemForm, inputValue }) {
   }
 
   return (
-    (itemForm && (
+    (taskForm && (
       <button
         onClick={toggleItemForm}
         className="uk-button uk-button-icon uk-margin-small-left uk-padding-remove-horizontal uk-text-success"
@@ -30,7 +30,7 @@ export default function Form({ toggleItemForm, itemForm, inputValue }) {
           data-uk-icon="close"
           data-uk-tooltip="title: Cencel"
         ></button>
-        <input ref={textInputValueRef} className="uk-input" type="text" placeholder="Add New Task" autoFocus />
+        <input ref={textInputValueRef} className="uk-input uk-form-small" type="text" placeholder="Add New Task" autoFocus />
       </form>
     )
   )

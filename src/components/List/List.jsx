@@ -1,14 +1,14 @@
 import React from 'react'
-import Item from './Item'
+import Task from './Task'
 
-export default function List({ list, toggleCheched, itemDelete, editedInputValue }) {
+export default function List({ tasks, toggleTaskChech, taskDelete, editedInputValue }) {
   return (
-    <section className="uk-margin uk-padding-small uk-padding-remove-horizontal">
-      <ul className="uk-list">
-        {list.map(item => {
-          return <Item key={item.id} toggleCheched={toggleCheched} itemDelete={itemDelete} item={item} editedInputValue={editedInputValue} />
+    <>
+      <ul className="uk-tasks uk-list uk-margin-top uk-padding-remove-horizontal">
+        {tasks.map(task => {
+          return <Task key={task.id} toggleTaskChech={toggleTaskChech} taskDelete={taskDelete} task={task} editedInputValue={editedInputValue} />
         })}
       </ul>
-    </section>
+    </>
   )
 }
