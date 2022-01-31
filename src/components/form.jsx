@@ -1,18 +1,19 @@
 import React, { useRef } from 'react'
 
-export default function Form({ taskForm, toggleItemForm, inputValue }) {
+export default function Form({ lists, taskForm, toggleItemForm, addNewTask }) {
   const textInputValueRef = useRef()
 
-  function handleInputValue(event) {
+  const handleInputValue = event => {
     event.preventDefault()
     const text = textInputValueRef.current.value
     if (text === '') return alert('Task Text is required!')
     textInputValueRef.current.value = null
-    inputValue(text)
+    addNewTask(text)
   }
 
   return (
-    (taskForm && (
+    lists.length > 0 &&
+    ((taskForm && (
       <button
         onClick={toggleItemForm}
         className="uk-button uk-button-icon uk-margin-small-left uk-padding-remove-horizontal uk-text-success"
@@ -32,6 +33,6 @@ export default function Form({ taskForm, toggleItemForm, inputValue }) {
         ></button>
         <input ref={textInputValueRef} className="uk-input uk-form-small" type="text" placeholder="Add New Task" autoFocus />
       </form>
-    )
+    ))
   )
 }

@@ -1,16 +1,16 @@
-import React, { useState, useRef } from 'react'
+import { useRef, useState } from 'react'
 
-export default function Item({ task, toggleTaskChech, taskDelete, editedInputValue }) {
+export default function Task({ task, toggleTaskChech, taskDelete, editedInputValue }) {
   const [taskEditable, setTaskEditable] = useState(false)
   const textInputValueRef = useRef()
 
-  function handleItemClick() {
+  const handleItemClick = () => {
     toggleTaskChech(task.id)
   }
-  function handleItemDelete() {
+  const handleItemDelete = () => {
     taskDelete(task.id)
   }
-  function handleInputValue(event) {
+  const handleInputValue = event => {
     event.preventDefault()
     const id = task.id
     const text = textInputValueRef.current.value
@@ -18,9 +18,11 @@ export default function Item({ task, toggleTaskChech, taskDelete, editedInputVal
     setTaskEditable(taskEditable => (taskEditable = !taskEditable))
     editedInputValue(id, text)
   }
+
   let checkColor = 'uk-margin-small-right uk-icon-button uk-text-'
   checkColor += task.check ? 'success uk-margin-large-left' : 'warning'
   const checkStatus = task.check ? 'title: Mark task as current' : 'title: Mark task as completed'
+
   return (
     <>
       {(taskEditable && (

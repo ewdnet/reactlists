@@ -1,16 +1,19 @@
 import React, { useRef } from 'react'
 
-export default function Header({ lists, listForm, toggleListForm, inputValue }) {
-  const inputTitleRef = useRef()
-
-  function handleInputValue(event) {
+export default function Header({ lists, listForm, toggleListForm, addNewList, selectedListId }) {
+  const inputRef = useRef()
+  const handleOnSubmit = event => {
     event.preventDefault()
-    const title = inputTitleRef.current.value
-    if (title === '') return alert('Task Text is required!')
-    inputTitleRef.current.value = null
-    inputValue(title)
+    const title = inputRef.current.value
+    if (!title) return alert('Please, set an Title for the new List.')
+    inputRef.current.value = null
+    addNewList(title)
   }
-
+  const handleLinkId = event => {
+    event.preventDefault()
+    const id = event.target.id
+    selectedListId(id)
+  }
   return (
     <>
       <h1 className="uk-h3 uk-margin-large-top uk-text-uppercase uk-text-muted uk-text-center">To do lists</h1>
@@ -18,11 +21,12 @@ export default function Header({ lists, listForm, toggleListForm, inputValue }) 
         <ul className="uk-flex-auto uk-tab uk-margin-remove-bottom uk-margin-small-top" data-uk-switcher="connect: .switcher-section; animation: uk-animation-slide-bottom-small">
           {lists.map(list => (
             <li key={list.id}>
-              <a href={`list-section-${list.id}`}>{list.title}</a>
+              <a onClick={handleLinkId} href={`#list-section-${list.id}`} id={list.id}>
+                {list.title}
+              </a>
             </li>
           ))}
         </ul>
-
         {(listForm && (
           <button
             onClick={toggleListForm}
@@ -33,7 +37,7 @@ export default function Header({ lists, listForm, toggleListForm, inputValue }) 
             data-uk-scrollspy="cls:uk-animation-slide-left"
           ></button>
         )) || (
-          <form onSubmit={handleInputValue} className="uk-form uk-flex uk-flex-middle" data-uk-scrollspy="cls:uk-animation-slide-right-small">
+          <form onSubmit={handleOnSubmit} className="uk-form uk-flex uk-flex-middle" data-uk-scrollspy="cls:uk-animation-slide-right-small">
             <button
               onClick={toggleListForm}
               className="uk-button uk-button-icon uk-padding-small uk-padding-remove-vertical uk-text-danger uk-icon"
@@ -41,7 +45,7 @@ export default function Header({ lists, listForm, toggleListForm, inputValue }) 
               data-uk-icon="close"
               data-uk-tooltip="title: Cencel"
             ></button>
-            <input ref={inputTitleRef} className="uk-input uk-form-small" type="text" placeholder="Add New List" autoFocus />
+            <input ref={inputRef} className="uk-input uk-form-small" type="text" placeholder="Add New List" autoFocus />
           </form>
         )}
       </div>
